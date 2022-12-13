@@ -1,0 +1,11 @@
+# log
+*.log
+
+# build
+build
+
+# firebase
+serviceAccountKey.json
+
+# misc
+.env

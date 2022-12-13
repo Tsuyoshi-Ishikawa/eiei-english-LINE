@@ -1,0 +1,25 @@
+version: '3.9'
+
+networks:
+  eiei-english:
+    driver: bridge
+
+services:
+  firebase:
+    build:
+      context: ./
+      dockerfile: firebase.dockerfile
+    networks:
+      - eiei-english
+    container_name: firebase
+    ports:
+      - 4000:4000 # Emulator Suite UI
+      - 5001:5001 # Cloud Functions
+      - 8080:8080 # Cloud Firestore
+      - 9199:9199 # Cloud Storage
+    working_dir: /opt/workspace
+    volumes:
+      - ./firebase:/opt/workspace
+      - ./functions/:/opt/workspace/functions
+    command: bash
+    tty: true
