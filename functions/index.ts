@@ -1,5 +1,9 @@
 import express from 'express';
 import * as functions from 'firebase-functions';
+import { UserStatementService, ChatGptAnswerService } from './src/repositories';
+
+const userStatementService = new UserStatementService();
+const chatGptAnswerService = new ChatGptAnswerService();
 
 const app = express();
 
