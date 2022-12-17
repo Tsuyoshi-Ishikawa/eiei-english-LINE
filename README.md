@@ -114,7 +114,9 @@ And Rename secret key as serviceAccountKey.json<br>
 ## Set environment_variable
 
 You have to create .env.<br>
-Please refer to .env.example.<br><br>
+Please refer to .env.example.<br>
+
+You have to create `OPENAI_API_KEY` at [openai.com](https://beta.openai.com/account/api-keys)
 
 ## Watch modification to rebuild
 
