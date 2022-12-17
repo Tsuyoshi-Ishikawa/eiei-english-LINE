@@ -111,6 +111,11 @@ and You have to download service account's credentials to `./firebase`.<br>
 And Rename secret key as serviceAccountKey.json<br>
 [Initialize the SDK](https://firebase.google.com/docs/admin/setup#initialize-sdk)
 
+## Set environment_variable
+
+You have to create .env.<br>
+Please refer to .env.example.<br><br>
+
 ## Watch modification to rebuild
 
 You have to watch code modification for rebuild.

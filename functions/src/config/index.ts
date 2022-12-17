@@ -11,4 +11,5 @@ export const FIREBASE_SECRET_PATH = process.env.FIREBASE_SECRET_PATH ?? '';
 export const FIREBASE_APP = initializeApp({
   credential: applicationDefault(),
   projectId: FIREBASE_PROJECT_ID,
+  storageBucket: `${FIREBASE_PROJECT_ID}.appspot.com`, // default cloud storage bucket
 });
