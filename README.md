@@ -100,6 +100,17 @@ service firebase.storage {
   ...
 ```
 
+## Download firebase project secret key
+
+If you set authentication to firebase service, <br>
+You have to use [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup).<br>
+
+You have to create service account's credentials at firebase project <br>
+and You have to download service account's credentials to `./firebase`.<br>
+
+And Rename secret key as serviceAccountKey.json<br>
+[Initialize the SDK](https://firebase.google.com/docs/admin/setup#initialize-sdk)
+
 ## Watch modification to rebuild
 
 You have to watch code modification for rebuild.
@@ -118,6 +129,6 @@ firebase emulators:start
 ```
 
 You can check emulators state at `localhost:4000`.<br>
-And you can access cloud function at `http://localhost:5001/${PROJECT_ID}/asia-northeast1/api/`.<br>
+And you can access cloud function at `http://localhost:5001/${PROJECT_ID}/asia-northeast1/api/`.(e.g. `http://127.0.0.1:5001/eiei-english/asia-northeast1/api`)<br>
 And you can access firestore at `localhost:8080`.<br>
 [Install, configure and integrate Local Emulator Suite](https://firebase.google.com/docs/emulator-suite/install_and_configure)
