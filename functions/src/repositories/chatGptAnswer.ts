@@ -1,12 +1,13 @@
 import { CollectionReference } from 'firebase-admin/firestore';
 import { createCollection } from '../repositories';
 import { ChatGptAnswer } from '../entities';
+import { chatGptAnswerCollection } from '../consts';
 
 export class ChatGptAnswerService {
   collection: CollectionReference<ChatGptAnswer>;
 
   constructor() {
-    this.collection = createCollection<ChatGptAnswer>('chatGpt_answers');
+    this.collection = createCollection<ChatGptAnswer>(chatGptAnswerCollection);
   }
 
   async setAnswer(
