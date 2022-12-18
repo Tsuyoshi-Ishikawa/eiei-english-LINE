@@ -100,7 +100,19 @@ service firebase.storage {
   ...
 ```
 
-## Download firebase project secret key
+## Enable Speech to Text API
+
+You have to enable [Cloud speech to Text](https://cloud.google.com/speech-to-text/docs/transcribe-api?hl=ja)
+
+## Create Service Account to use Speech to Text API, Download secret key
+
+You have to create service account and set Role(Cloud Speech Admin, Cloud Speech to Text service agent).
+
+- [create_a_service_account](https://cloud.google.com/speech-to-text/docs/before-you-begin#create_a_service_account)
+
+And you have to create secret key and download it to `./firebase`. And Rename secret key as `speechToText.json`<br>
+
+## Create Service Account to use firebase-admin, Download secret key
 
 If you set authentication to firebase service, <br>
 You have to use [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup).<br>
@@ -108,7 +120,7 @@ You have to use [Firebase Admin SDK](https://firebase.google.com/docs/admin/setu
 You have to create service account's credentials at firebase project <br>
 and You have to download service account's credentials to `./firebase`.<br>
 
-And Rename secret key as serviceAccountKey.json<br>
+And Rename secret key as `serviceAccountKey.json`<br>
 [Initialize the SDK](https://firebase.google.com/docs/admin/setup#initialize-sdk)
 
 ## Set environment_variable

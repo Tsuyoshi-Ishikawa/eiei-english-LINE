@@ -10,7 +10,7 @@ export class AudioDataService {
 
   async uploadFile() {
     await this.bucket.upload(
-      '/opt/workspace/functions/src/repositories/auditData.ts', // todo: set file data
+      '/opt/workspace/functions/src/static/introduce.wav', // todo: set file data
     );
   }
 }
