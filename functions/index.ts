@@ -18,10 +18,12 @@ app.get('/', (req, res) => {
 
 export const api = functions.region('asia-northeast1').https.onRequest(app);
 
-export const postUserStatement = functions.firestore
-  .document(`${userStatementCollection}/{Id}`)
+export const postUserStatement = functions
+  .region('asia-northeast1')
+  .firestore.document(`${userStatementCollection}/{Id}`)
   .onCreate(postUserStatementEvent);
 
-export const postChatGptAnswer = functions.firestore
-  .document(`${chatGptAnswerCollection}/{Id}`)
+export const postChatGptAnswer = functions
+  .region('asia-northeast1')
+  .firestore.document(`${chatGptAnswerCollection}/{Id}`)
   .onCreate(postChatGptAnswerEvent);
