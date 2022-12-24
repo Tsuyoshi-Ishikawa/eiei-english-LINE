@@ -1,9 +1,9 @@
 import { SpeechClient } from '@google-cloud/speech';
-import { FIREBASE_DEFAULT_BUCKET, FIREBASE_PROJECT_ID } from '../config';
+import { FIREBASE_DEFAULT_BUCKET, PROJECT_ID } from '../config';
 
 const client = new SpeechClient({
   keyFilename: process.env.SPEECH_TO_TEXT_SECRET_KEY_PATH ?? '',
-  projectId: FIREBASE_PROJECT_ID,
+  projectId: PROJECT_ID,
 });
 
 export const transcriptSpeech = async (filename: string) => {

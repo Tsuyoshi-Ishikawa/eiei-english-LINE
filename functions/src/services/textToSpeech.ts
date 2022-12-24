@@ -1,10 +1,10 @@
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
-import { FIREBASE_PROJECT_ID } from '../config';
+import { PROJECT_ID } from '../config';
 import { AudioDataRepository } from '../repositories';
 
 const client = new TextToSpeechClient({
   keyFilename: process.env.SPEECH_TO_TEXT_SECRET_KEY_PATH ?? '',
-  projectId: FIREBASE_PROJECT_ID,
+  projectId: PROJECT_ID,
 });
 const audioDataService = new AudioDataRepository();
 

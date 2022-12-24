@@ -12,11 +12,11 @@ const configuration = new Configuration({
 export const openai = new OpenAIApi(configuration);
 
 export const FIRESTORE_URL = process.env.FIRESTORE_URL ?? 'firebase:8080';
-export const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID ?? '';
+export const PROJECT_ID = process.env.PROJECT_ID ?? '';
 export const FIREBASE_SECRET_PATH = process.env.FIREBASE_SECRET_PATH ?? '';
-export const FIREBASE_DEFAULT_BUCKET = `${FIREBASE_PROJECT_ID}.appspot.com`;
+export const FIREBASE_DEFAULT_BUCKET = `${PROJECT_ID}.appspot.com`;
 export const FIREBASE_APP = initializeApp({
   credential: applicationDefault(),
-  projectId: FIREBASE_PROJECT_ID,
+  projectId: PROJECT_ID,
   storageBucket: FIREBASE_DEFAULT_BUCKET,
 });

@@ -134,7 +134,7 @@ And Rename secret key as `serviceAccountKey.json`<br>
 ## Set environment_variable
 
 You have to create .env.<br>
-Please refer to .env.example.<br>
+Please refer to .env-example.<br>
 
 You have to create `OPENAI_API_KEY` at [openai.com](https://beta.openai.com/account/api-keys)
 
@@ -159,3 +159,12 @@ You can check emulators state at `localhost:4000`.<br>
 And you can access cloud function at `http://localhost:5001/${PROJECT_ID}/asia-northeast1/api/`.(e.g. `http://127.0.0.1:5001/eiei-english/asia-northeast1/api`)<br>
 And you can access firestore at `localhost:8080`.<br>
 [Install, configure and integrate Local Emulator Suite](https://firebase.google.com/docs/emulator-suite/install_and_configure)
+
+## Deploy from Docker emulator
+
+### Designate node_modules path
+
+```bash
+# in firebase container(/opt/workspace)
+firebase functions:config:set node.module_path=./functions/node_modules/
+```
