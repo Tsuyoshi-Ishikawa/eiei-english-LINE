@@ -157,3 +157,9 @@ And you can access firestore at `localhost:8080`.<br>
 # in firebase container(/opt/workspace)
 firebase functions:config:set node.module_path=./functions/node_modules/
 ```
+
+### Deploy
+
+```bash
+firebase deploy --only functions
+```
