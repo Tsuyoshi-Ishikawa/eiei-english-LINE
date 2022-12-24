@@ -1,14 +1,14 @@
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
 import { FIREBASE_PROJECT_ID } from '../config';
-import { AudioDataService } from '../repositories';
+import { AudioDataRepository } from '../repositories';
 
 const client = new TextToSpeechClient({
   keyFilename: process.env.SPEECH_TO_TEXT_SECRET_KEY_PATH ?? '',
   projectId: FIREBASE_PROJECT_ID,
 });
-const audioDataService = new AudioDataService();
+const audioDataService = new AudioDataRepository();
 
-export const transcript = async (userId: string, text: string) => {
+export const transcriptText = async (userId: string, text: string) => {
   const request = {
     input: { text },
     voice: { languageCode: 'en-US', ssmlGender: 3 },
@@ -29,6 +29,7 @@ export const transcript = async (userId: string, text: string) => {
 
   const now = Date.now();
   // line bot can only handle mp3 or m4a.
-  const filename = `${userId}_${now}.mp3`;
+  const filename = `answer_${userId}_${now}.mp3`;
   await audioDataService.uploadMP3(filename, buffer);
+  return filename;
 };

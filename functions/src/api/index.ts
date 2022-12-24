@@ -1,12 +1,12 @@
-import { UserStatementService, AudioDataService } from '../repositories';
+import { UserStatementRepository, AudioDataRepository } from '../repositories';
 
-const userStatementService = new UserStatementService();
-const audioDataService = new AudioDataService();
+const userStatement = new UserStatementRepository();
+const audioData = new AudioDataRepository();
 
 export const post = async () => {
-  await audioDataService.uploadWAV();
+  await audioData.uploadWAV();
   const filename = 'introduce';
-  await userStatementService.setStatement({
+  await userStatement.setStatement({
     userId: 'TsuyoshiIshikawa',
     audioUrl: filename,
   });

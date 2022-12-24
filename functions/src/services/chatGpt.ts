@@ -15,6 +15,6 @@ export const postChatGpt = async (prompt: string) => {
   completion.data.choices.forEach((choice) => {
     text += choice.text;
   });
-  console.log(text);
+  console.log('ChatGptAnswer is', text);
   return text;
 };

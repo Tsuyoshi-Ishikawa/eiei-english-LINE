@@ -1,7 +1,7 @@
 import { Bucket } from '@google-cloud/storage';
 import { getBucket } from '../repositories';
 
-export class AudioDataService {
+export class AudioDataRepository {
   bucket: Bucket;
 
   constructor() {

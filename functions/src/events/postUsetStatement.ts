@@ -1,7 +1,10 @@
 import * as functions from 'firebase-functions';
 import { QueryDocumentSnapshot } from 'firebase-admin/firestore';
 import { UserStatement } from '../entities';
-import { transcript } from '../services/speakToText';
+import { transcriptSpeech, postChatGpt, transcriptText } from '../services';
+import { ChatGptAnswerRepository } from '../repositories';
+
+const chatGptAnswer = new ChatGptAnswerRepository();
 
 export const postUserStatementEvent = async (
   snap: QueryDocumentSnapshot,
@@ -10,5 +13,27 @@ export const postUserStatementEvent = async (
   const newValue = snap.data() as UserStatement;
   const { userId, audioUrl, date } = newValue;
 
-  transcript('introduce');
+  try {
+    const userStatementText = await transcriptSpeech(audioUrl);
+    const chatGptStatementText = await postChatGpt(userStatementText);
+    const chatGptStatementUrl = await transcriptText(
+      userId,
+      chatGptStatementText,
+    );
+    await chatGptAnswer.setAnswer({
+      userId,
+      audioUrl: chatGptStatementUrl,
+      userStatementText,
+      chatGptStatementText,
+    });
+  } catch (err) {
+    if (err instanceof Error) {
+      await chatGptAnswer.setAnswer({
+        userId,
+        audioUrl: '',
+        userStatementText: '',
+        chatGptStatementText: err.message,
+      });
+    }
+  }
 };

@@ -3,7 +3,7 @@ import { createCollection } from '../repositories';
 import { ChatGptAnswer } from '../entities';
 import { chatGptAnswerCollection } from '../consts';
 
-export class ChatGptAnswerService {
+export class ChatGptAnswerRepository {
   collection: CollectionReference<ChatGptAnswer>;
 
   constructor() {

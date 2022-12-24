@@ -6,7 +6,7 @@ const client = new SpeechClient({
   projectId: FIREBASE_PROJECT_ID,
 });
 
-export const transcript = async (filename: string) => {
+export const transcriptSpeech = async (filename: string) => {
   const audio = {
     // m4a and mp3 is not valid
     // https://cloud.google.com/speech-to-text/v2/docs/best-practices
@@ -24,21 +24,18 @@ export const transcript = async (filename: string) => {
     config,
   };
 
-  try {
-    const response = await client.recognize(request);
-    const results = response[0].results;
-    if (!results) throw new Error('Unable to transcribe audio');
+  const response = await client.recognize(request);
+  const results = response[0].results;
+  if (!results) throw new Error('Unable to transcribe audio');
 
-    const transcriptionArray = results.map((result) => {
-      if (!result.alternatives) throw new Error('Unable to transcribe audio');
-      if (!result.alternatives[0].transcript)
-        throw new Error('Unable to transcribe audio');
-      return result.alternatives[0].transcript;
-    });
-    const transcription = transcriptionArray.join(' ');
+  const transcriptionArray = results.map((result) => {
+    if (!result.alternatives) throw new Error('Unable to transcribe audio');
+    if (!result.alternatives[0].transcript)
+      throw new Error('Unable to transcribe audio');
+    return result.alternatives[0].transcript;
+  });
+  const userStatement = transcriptionArray.join(' ');
 
-    console.log(`Transcription: ${transcription}`);
-  } catch (err) {
-    console.error('ERROR:', err);
-  }
+  console.log(`userStatement: ${userStatement}`);
+  return userStatement;
 };

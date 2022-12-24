@@ -3,7 +3,7 @@ import { createCollection } from '../repositories';
 import { UserStatement } from '../entities';
 import { userStatementCollection } from '../consts';
 
-export class UserStatementService {
+export class UserStatementRepository {
   collection: CollectionReference<UserStatement>;
 
   constructor() {
