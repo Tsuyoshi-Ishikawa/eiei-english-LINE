@@ -1,16 +1,8 @@
 import express from 'express';
 import * as functions from 'firebase-functions';
 import { chatGptAnswerCollection, userStatementCollection } from './src/consts';
-import {
-  UserStatementService,
-  ChatGptAnswerService,
-  AudioDataService,
-} from './src/repositories';
+import { post } from './src/api';
 import { postUserStatementEvent, postChatGptAnswerEvent } from './src/events';
-
-const userStatementService = new UserStatementService();
-const chatGptAnswerService = new ChatGptAnswerService();
-const audioDataService = new AudioDataService();
 
 const app = express();
 
@@ -18,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
+  post();
   res.status(200).send({
     msg: 'hello world',
   });
