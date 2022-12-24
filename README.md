@@ -112,6 +112,14 @@ You have to create service account and set Role(Cloud Speech Admin, Cloud Speech
 
 And you have to create secret key and download it to `./firebase`. And Rename secret key as `speechToText.json`<br>
 
+## Enable Text to Speech API
+
+You have to enable [Cloud Text to Speech](https://cloud.google.com/text-to-speech/docs/before-you-begin)
+
+## Create Service Account to use Text to Speech API, Download secret key
+
+You can skip this procedure if you've done `Create Service Account to use Speech to Text API, Download secret key`.
+
 ## Create Service Account to use firebase-admin, Download secret key
 
 If you set authentication to firebase service, <br>
