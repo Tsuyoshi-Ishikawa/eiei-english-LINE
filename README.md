@@ -120,17 +120,6 @@ You have to enable [Cloud Text to Speech](https://cloud.google.com/text-to-speec
 
 You can skip this procedure if you've done `Create Service Account to use Speech to Text API, Download secret key`.
 
-## Create Service Account to use firebase-admin, Download secret key
-
-If you set authentication to firebase service, <br>
-You have to use [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup).<br>
-
-You have to create service account's credentials at firebase project <br>
-and You have to download service account's credentials to `./firebase`.<br>
-
-And Rename secret key as `serviceAccountKey.json`<br>
-[Initialize the SDK](https://firebase.google.com/docs/admin/setup#initialize-sdk)
-
 ## Set environment_variable
 
 You have to create .env.<br>
