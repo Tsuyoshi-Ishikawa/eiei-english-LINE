@@ -1,6 +1,9 @@
 import { openai } from '../config';
 
 export const postChatGpt = async (prompt: string) => {
+  prompt += ' Briefly answer in 100 words or less.';
+  prompt +=
+    ' Please return me one question to get the discussion on this topic going.';
   const completion = await openai.createCompletion({
     model: 'text-davinci-003', // GPT3.5
     prompt: prompt,
