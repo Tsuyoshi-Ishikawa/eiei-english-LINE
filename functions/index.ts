@@ -9,7 +9,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
   post();
   res.status(200).send({
     msg: 'hello world',
