@@ -127,6 +127,13 @@ Please refer to .env-example.<br>
 
 You have to create `OPENAI_API_KEY` at [openai.com](https://beta.openai.com/account/api-keys)
 
+And set ADMIN_ENV from firebase admin secret key.
+
+```sh
+ADMIN_CLIENT_EMAIL='firebase-adminsdk-OOOOO.iam.gserviceaccount.com'
+ADMIN_PRIVATE_KEY='-----BEGIN PRIVATE KEY-----\n.....\n-----END PRIVATE KEY-----\n'
+```
+
 ## Watch modification to rebuild
 
 You have to watch code modification for rebuild.

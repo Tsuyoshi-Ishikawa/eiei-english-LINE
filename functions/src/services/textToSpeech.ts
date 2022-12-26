@@ -1,6 +1,7 @@
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
 import { PROJECT_ID } from '../config';
 import { AudioDataRepository } from '../repositories';
+import { getFileName } from '../utils/file';
 
 const client = new TextToSpeechClient({
   keyFilename: process.env.SPEECH_TO_TEXT_SECRET_KEY_PATH ?? '',
@@ -27,9 +28,12 @@ export const transcriptText = async (userId: string, text: string) => {
     throw new Error('We can not answer those comment');
   }
 
-  const now = Date.now();
   // line bot can only handle mp3 or m4a.
-  const filename = `answer_${userId}_${now}.mp3`;
+  const filename = getFileName({
+    prefix: 'answer',
+    userId,
+    extension: 'mp3',
+  });
   await audioDataService.uploadMP3(filename, buffer);
   return filename;
 };

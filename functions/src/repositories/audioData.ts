@@ -1,5 +1,6 @@
 import { Bucket } from '@google-cloud/storage';
 import { getBucket } from '../repositories';
+import { validateMP3FilePath, validateWAVFilePath } from '../utils';
 
 export class AudioDataRepository {
   bucket: Bucket;
@@ -8,13 +9,15 @@ export class AudioDataRepository {
     this.bucket = getBucket();
   }
 
-  async uploadWAV() {
-    await this.bucket.upload(
-      '/opt/workspace/functions/src/static/introduce.wav', // todo: set file data
-    );
+  async uploadWAV(filename: string, buffer: Buffer) {
+    validateWAVFilePath(filename);
+    await this.bucket.file(filename).save(buffer, {
+      contentType: 'audio/wav',
+    });
   }
 
   async uploadMP3(filename: string, buffer: Buffer) {
+    validateMP3FilePath(filename);
     await this.bucket.file(filename).save(buffer, {
       contentType: 'audio/mp3',
     });

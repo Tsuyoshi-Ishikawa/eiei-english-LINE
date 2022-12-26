@@ -1,5 +1,6 @@
 import { SpeechClient } from '@google-cloud/speech';
 import { FIREBASE_DEFAULT_BUCKET, PROJECT_ID } from '../config';
+import { validateWAVFilePath } from '../utils';
 
 const client = new SpeechClient({
   keyFilename: process.env.SPEECH_TO_TEXT_SECRET_KEY_PATH ?? '',
@@ -7,10 +8,12 @@ const client = new SpeechClient({
 });
 
 export const transcriptSpeech = async (filename: string) => {
+  validateWAVFilePath(filename);
+
   const audio = {
     // m4a and mp3 is not valid
     // https://cloud.google.com/speech-to-text/v2/docs/best-practices
-    uri: `gs://${FIREBASE_DEFAULT_BUCKET}/${filename}.wav`,
+    uri: `gs://${FIREBASE_DEFAULT_BUCKET}/${filename}`,
   };
 
   const config = {
