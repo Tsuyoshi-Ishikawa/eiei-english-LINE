@@ -165,8 +165,37 @@ And you can access firestore at `localhost:8080`.<br>
 firebase functions:config:set node.module_path=./functions/node_modules/
 ```
 
+### Override environment variable
+
+[Deploying multiple sets of environment variables](https://firebase.google.com/docs/functions/config-env#deploying_multiple_sets_of_environment_variables)
+Create .env.`YOUR PROJECT` to set environment variable for production.
+
+```bash
+IS_DEV=
+```
+
+### Create Firestore Collection
+
+Create Firestore Collection along with `functions/src/consts/collections.ts`.
+
 ### Deploy
 
 ```bash
 firebase deploy --only functions
+```
+
+### Modify Firestore rules
+
+Default Firestore rules don't allow to save your data.
+That's why you need to change Firestore rules as following.
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth.uid != null;
+    }
+  }
+}
 ```
