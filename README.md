@@ -207,3 +207,29 @@ service cloud.firestore {
   }
 }
 ```
+
+### Modify Cloud Storage rules
+
+To access from only firebase, Modify Cloud Storage rules.
+
+```
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth.uid != null;
+    }
+  }
+}
+```
+
+### Add Firebase Rules System
+
+To confirm storage and firestore access authorization, You have to add Firebase Rules System to your account.
+
+At IAM page of GCP, please add `Firebase Rules System` to your account.
+
+You can check access authorization at Cloud storage access authorization at GCP page.
+[ACL](https://cloud.google.com/storage/docs/access-control/create-manage-lists#set-an-acl)
+
+If you play audio at Cloud storage, please add access token to that content.
