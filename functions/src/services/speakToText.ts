@@ -1,9 +1,17 @@
 import { SpeechClient } from '@google-cloud/speech';
-import { FIREBASE_DEFAULT_BUCKET, PROJECT_ID } from '../config';
+import {
+  FIREBASE_DEFAULT_BUCKET,
+  PROJECT_ID,
+  SPEECH_TO_TEXT_SA_CLIENT_EMAIL,
+  SPEECH_TO_TEXT_SA_PRIVATE_KEY,
+} from '../config';
 import { validateWAVFilePath } from '../utils';
 
 const client = new SpeechClient({
-  keyFilename: process.env.SPEECH_TO_TEXT_SECRET_KEY_PATH ?? '',
+  credentials: {
+    client_email: SPEECH_TO_TEXT_SA_CLIENT_EMAIL,
+    private_key: SPEECH_TO_TEXT_SA_PRIVATE_KEY,
+  },
   projectId: PROJECT_ID,
 });
 

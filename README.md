@@ -134,6 +134,13 @@ ADMIN_CLIENT_EMAIL='firebase-adminsdk-OOOOO.iam.gserviceaccount.com'
 ADMIN_PRIVATE_KEY='-----BEGIN PRIVATE KEY-----\n.....\n-----END PRIVATE KEY-----\n'
 ```
 
+And set SPEECH_TO_TEXT_SA_ENV from speechToText service account secret key.
+
+```sh
+SPEECH_TO_TEXT_SA_CLIENT_EMAIL='firebase-adminsdk-OOOOO.iam.gserviceaccount.com'
+SPEECH_TO_TEXT_SA_PRIVATE_KEY='-----BEGIN PRIVATE KEY-----\n.....\n-----END PRIVATE KEY-----\n'
+```
+
 ## Watch modification to rebuild
 
 You have to watch code modification for rebuild.

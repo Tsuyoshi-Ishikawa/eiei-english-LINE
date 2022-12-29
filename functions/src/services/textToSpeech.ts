@@ -1,12 +1,20 @@
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
-import { PROJECT_ID } from '../config';
+import {
+  PROJECT_ID,
+  SPEECH_TO_TEXT_SA_CLIENT_EMAIL,
+  SPEECH_TO_TEXT_SA_PRIVATE_KEY,
+} from '../config';
 import { AudioDataRepository } from '../repositories';
 import { getFileName } from '../utils/file';
 
 const client = new TextToSpeechClient({
-  keyFilename: process.env.SPEECH_TO_TEXT_SECRET_KEY_PATH ?? '',
+  credentials: {
+    client_email: SPEECH_TO_TEXT_SA_CLIENT_EMAIL,
+    private_key: SPEECH_TO_TEXT_SA_PRIVATE_KEY,
+  },
   projectId: PROJECT_ID,
 });
+
 const audioDataService = new AudioDataRepository();
 
 export const transcriptText = async (userId: string, text: string) => {

@@ -27,5 +27,12 @@ export const FIREBASE_APP = initializeApp({
   storageBucket: FIREBASE_DEFAULT_BUCKET,
 });
 
+export const SPEECH_TO_TEXT_SA_CLIENT_EMAIL =
+  process.env.SPEECH_TO_TEXT_SA_CLIENT_EMAIL ?? '';
+export const SPEECH_TO_TEXT_SA_PRIVATE_KEY = process.env
+  .SPEECH_TO_TEXT_SA_PRIVATE_KEY
+  ? process.env.SPEECH_TO_TEXT_SA_PRIVATE_KEY.replace(/\\n/g, '\n')
+  : '';
+
 export const LINE_CHANNEL_ACCESS_TOKEN = process.env.CHANNEL_ACCESS_TOKEN ?? '';
 export const LINE_CHANNEL_SECRET = process.env.CHANNEL_SECRET ?? '';
