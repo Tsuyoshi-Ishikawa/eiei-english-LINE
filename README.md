@@ -158,6 +158,14 @@ And you can access firestore at `localhost:8080`.<br>
 
 ## Deploy from Docker emulator
 
+### Build
+
+```bash
+# in firebase container
+cd functions
+npm run build:watch
+```
+
 ### Designate node_modules path
 
 ```bash
