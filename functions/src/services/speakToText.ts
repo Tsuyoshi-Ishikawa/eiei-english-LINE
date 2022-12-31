@@ -7,7 +7,8 @@ export const transcriptSpeech = async (content: Buffer) => {
   };
   const response = await deepgram.transcription.preRecorded(preRecord);
 
-  if (!response.results) throw new Error('Your audio data is not valid');
+  if (!response.results)
+    throw new Error('音声データを読み取ることに失敗しました。');
 
   const transcriptionArray: Array<string> = [];
   response.results?.channels.forEach((channel) => {

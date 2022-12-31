@@ -1,10 +1,7 @@
-import { Client } from '@line/bot-sdk';
-import { LINE_CHANNEL_ACCESS_TOKEN, LINE_CHANNEL_SECRET } from '../config';
-
-const client = new Client({ channelAccessToken: LINE_CHANNEL_ACCESS_TOKEN });
+import { lineClient } from '../config';
 
 export const getContent = async (messageId: string) => {
-  const stream = await client.getMessageContent(messageId);
+  const stream = await lineClient.getMessageContent(messageId);
   const content: Buffer[] = [];
 
   for await (const chunk of stream) {
