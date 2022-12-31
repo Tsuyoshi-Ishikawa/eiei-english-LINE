@@ -25,6 +25,8 @@ export const transcriptSpeech = async (filename: string) => {
   };
 
   const config = {
+    // you have to set sampleRateHertz to deal with storage wav.
+    sampleRateHertz: 16000,
     encoding: 1,
     languageCode: 'en-US',
     enableAutomaticPunctuation: true,
@@ -35,8 +37,8 @@ export const transcriptSpeech = async (filename: string) => {
     config,
   };
 
-  const response = await client.recognize(request);
-  const results = response[0].results;
+  const [response] = await client.recognize(request);
+  const results = response.results;
   if (!results) throw new Error('Unable to transcribe audio');
 
   const transcriptionArray = results.map((result) => {

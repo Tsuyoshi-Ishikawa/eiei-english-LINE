@@ -27,13 +27,6 @@ export const postUserStatementEvent = async (
       chatGptStatementText,
     });
   } catch (err) {
-    if (err instanceof Error) {
-      await chatGptAnswer.setAnswer({
-        userId,
-        audioUrl: '',
-        userStatementText: '',
-        chatGptStatementText: err.message,
-      });
-    }
+    console.error(err);
   }
 };
