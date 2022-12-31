@@ -1,9 +1,9 @@
 import express from 'express';
 import * as functions from 'firebase-functions';
 import { validateSignature, WebhookRequestBody } from '@line/bot-sdk';
-import { chatGptAnswerCollection, userStatementCollection } from './src/consts';
+import { userStatementCollection } from './src/consts';
 import { post } from './src/api';
-import { postUserStatementEvent, postChatGptAnswerEvent } from './src/events';
+import { postUserStatementEvent } from './src/events';
 import { isMessageEvent, isAudioEventMessage } from './src/services';
 import { LINE_CHANNEL_SECRET } from './src/config';
 
@@ -56,8 +56,3 @@ export const postUserStatement = functions
   .region('asia-northeast1')
   .firestore.document(`${userStatementCollection}/{Id}`)
   .onCreate(postUserStatementEvent);
-
-export const postChatGptAnswer = functions
-  .region('asia-northeast1')
-  .firestore.document(`${chatGptAnswerCollection}/{Id}`)
-  .onCreate(postChatGptAnswerEvent);
