@@ -125,7 +125,8 @@ You can skip this procedure if you've done `Create Service Account to use Speech
 You have to create .env.<br>
 Please refer to .env-example.<br>
 
-You have to create `OPENAI_API_KEY` at [openai.com](https://beta.openai.com/account/api-keys)
+You have to create `OPENAI_API_KEY` at [openai.com](https://beta.openai.com/account/api-keys).
+And uou have to create `DEEPGRAM_API_KEY` at [deepgram](https://deepgram.com/).
 
 And set ADMIN_ENV from firebase admin secret key.
 

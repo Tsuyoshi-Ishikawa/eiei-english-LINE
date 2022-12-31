@@ -14,18 +14,18 @@ export const postUserStatementEvent = async (
   const { userId, audioUrl, date } = newValue;
 
   try {
-    const userStatementText = await transcriptSpeech(audioUrl);
-    const chatGptStatementText = await postChatGpt(userStatementText);
-    const chatGptStatementUrl = await transcriptText(
-      userId,
-      chatGptStatementText,
-    );
-    await chatGptAnswer.setAnswer({
-      userId,
-      audioUrl: chatGptStatementUrl,
-      userStatementText,
-      chatGptStatementText,
-    });
+    // const userStatementText = await transcriptSpeech(audioUrl);
+    // const chatGptStatementText = await postChatGpt(userStatementText);
+    // const chatGptStatementUrl = await transcriptText(
+    //   userId,
+    //   chatGptStatementText,
+    // );
+    // await chatGptAnswer.setAnswer({
+    //   userId,
+    //   audioUrl: chatGptStatementUrl,
+    //   userStatementText,
+    //   chatGptStatementText,
+    // });
   } catch (err) {
     console.error(err);
   }

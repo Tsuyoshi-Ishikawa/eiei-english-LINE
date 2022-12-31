@@ -1,54 +1,22 @@
-import { SpeechClient } from '@google-cloud/speech';
-import {
-  FIREBASE_DEFAULT_BUCKET,
-  PROJECT_ID,
-  SPEECH_TO_TEXT_SA_CLIENT_EMAIL,
-  SPEECH_TO_TEXT_SA_PRIVATE_KEY,
-} from '../config';
-import { validateWAVFilePath } from '../utils';
+import { deepgram } from '../config';
 
-const client = new SpeechClient({
-  credentials: {
-    client_email: SPEECH_TO_TEXT_SA_CLIENT_EMAIL,
-    private_key: SPEECH_TO_TEXT_SA_PRIVATE_KEY,
-  },
-  projectId: PROJECT_ID,
-});
-
-export const transcriptSpeech = async (filename: string) => {
-  validateWAVFilePath(filename);
-
-  const audio = {
-    // m4a and mp3 is not valid
-    // https://cloud.google.com/speech-to-text/v2/docs/best-practices
-    uri: `gs://${FIREBASE_DEFAULT_BUCKET}/${filename}`,
+export const transcriptSpeech = async (content: Buffer) => {
+  const preRecord = {
+    buffer: content,
+    mimetype: 'audio/mp4',
   };
+  const response = await deepgram.transcription.preRecorded(preRecord);
 
-  const config = {
-    // you have to set sampleRateHertz to deal with storage wav.
-    sampleRateHertz: 16000,
-    encoding: 1,
-    languageCode: 'en-US',
-    enableAutomaticPunctuation: true,
-    model: 'phone_call',
-  };
-  const request = {
-    audio,
-    config,
-  };
+  if (!response.results) throw new Error('Your audio data is not valid');
 
-  const [response] = await client.recognize(request);
-  const results = response.results;
-  if (!results) throw new Error('Unable to transcribe audio');
-
-  const transcriptionArray = results.map((result) => {
-    if (!result.alternatives) throw new Error('Unable to transcribe audio');
-    if (!result.alternatives[0].transcript)
-      throw new Error('Unable to transcribe audio');
-    return result.alternatives[0].transcript;
+  const transcriptionArray: Array<string> = [];
+  response.results?.channels.forEach((channel) => {
+    channel.alternatives.forEach((alternative) => {
+      transcriptionArray.push(alternative.transcript);
+    });
   });
-  const userStatement = transcriptionArray.join(' ');
 
+  const userStatement = transcriptionArray.join(' ');
   console.log(`userStatement: ${userStatement}`);
   return userStatement;
 };
