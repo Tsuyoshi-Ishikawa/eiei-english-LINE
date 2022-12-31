@@ -10,7 +10,7 @@ export class UserStatementRepository {
     this.collection = createCollection<UserStatement>(userStatementCollection);
   }
 
-  async setStatement(data: Pick<UserStatement, 'userId' | 'audioUrl'>) {
+  async setStatement(data: Pick<UserStatement, 'userId' | 'comment'>) {
     const statement = {
       ...data,
       date: new Date(),

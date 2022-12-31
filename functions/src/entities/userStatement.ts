@@ -1,5 +1,5 @@
 export interface UserStatement {
   userId: string;
-  audioUrl: string;
+  comment: string;
   date: Date;
 }

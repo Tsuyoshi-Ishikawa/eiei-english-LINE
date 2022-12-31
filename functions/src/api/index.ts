@@ -16,10 +16,10 @@ export const post = async (params: { userId: string; messageId: string }) => {
   });
   const content = await getContent(messageId);
 
-  await transcriptSpeech(content);
+  const userComment = await transcriptSpeech(content);
 
-  // await userStatement.setStatement({
-  //   userId,
-  //   audioUrl: filename,
-  // });
+  await userStatement.setStatement({
+    userId,
+    comment: userComment,
+  });
 };
