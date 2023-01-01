@@ -1,4 +1,4 @@
-import { Bucket } from '@google-cloud/storage';
+import { Bucket, GetSignedUrlConfig } from '@google-cloud/storage';
 import {
   cloudConvert,
   FIREBASE_ADMIN_CLIENT_EMAIL,
@@ -17,6 +17,17 @@ export class AudioDataRepository {
 
   constructor() {
     this.bucket = getBucket();
+  }
+
+  async getSignedM4aUrl(filename: string) {
+    validateM4AFilePath(filename);
+
+    const options: GetSignedUrlConfig = {
+      action: 'read',
+      expires: 600, // 10 min
+    };
+    const url = await this.bucket.file(filename).getSignedUrl(options);
+    return url;
   }
 
   async uploadWAV(filename: string, buffer: Buffer) {
