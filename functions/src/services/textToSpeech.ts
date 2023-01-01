@@ -4,8 +4,6 @@ import {
   SPEECH_TO_TEXT_SA_CLIENT_EMAIL,
   SPEECH_TO_TEXT_SA_PRIVATE_KEY,
 } from '../config';
-import { AudioDataRepository } from '../repositories';
-import { getFileName } from '../utils/file';
 
 const client = new TextToSpeechClient({
   credentials: {
@@ -14,8 +12,6 @@ const client = new TextToSpeechClient({
   },
   projectId: PROJECT_ID,
 });
-
-const audioDataService = new AudioDataRepository();
 
 export const transcriptText = async (userId: string, text: string) => {
   const request = {
@@ -36,12 +32,5 @@ export const transcriptText = async (userId: string, text: string) => {
     throw new Error('We can not answer those comment');
   }
 
-  // line bot can only handle mp3 or m4a.
-  const filename = getFileName({
-    prefix: 'answer',
-    userId,
-    extension: 'mp3',
-  });
-  await audioDataService.uploadMP3(filename, buffer);
-  return filename;
+  return buffer;
 };

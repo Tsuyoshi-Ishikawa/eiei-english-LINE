@@ -17,6 +17,7 @@
     "@deepgram/sdk": "^1.14.0",
     "@google-cloud/text-to-speech": "^4.0.4",
     "@line/bot-sdk": "^7.5.2",
+    "cloudconvert": "^2.3.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "firebase-admin": "^11.4.1",

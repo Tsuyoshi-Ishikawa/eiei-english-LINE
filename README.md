@@ -127,6 +127,7 @@ Please refer to .env-example.<br>
 
 You have to create `OPENAI_API_KEY` at [openai.com](https://beta.openai.com/account/api-keys).
 And uou have to create `DEEPGRAM_API_KEY` at [deepgram](https://deepgram.com/).
+And uou have to create `CLOUD_CONVERT_API_KEY` at [cloudconvert](https://cloudconvert.com/).
 
 And set ADMIN_ENV from firebase admin secret key.
 

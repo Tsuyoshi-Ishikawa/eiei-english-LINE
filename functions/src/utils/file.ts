@@ -20,3 +20,8 @@ export const validateMP3FilePath = (filename: string) => {
   const check = filename.endsWith('.mp3');
   if (!check) throw new Error('please set mp3 file.');
 };
+
+export const validateM4AFilePath = (filename: string) => {
+  const check = filename.endsWith('.m4a');
+  if (!check) throw new Error('please set m4a file.');
+};
