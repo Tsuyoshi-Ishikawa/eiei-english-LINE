@@ -5,9 +5,7 @@ import {
   validateSignature,
   WebhookRequestBody,
 } from '@line/bot-sdk';
-import { chatGptAnswerCollection, userStatementCollection } from './src/consts';
 import { post } from './src/api';
-import { postChatGptAnswerEvent, postUserStatementEvent } from './src/events';
 import { isMessageEvent, isAudioEventMessage } from './src/services';
 import { LINE_CHANNEL_SECRET, lineClient } from './src/config';
 
@@ -55,13 +53,3 @@ app.post('/', (req, res) => {
 });
 
 export const api = functions.region('asia-northeast1').https.onRequest(app);
-
-export const postUserStatement = functions
-  .region('asia-northeast1')
-  .firestore.document(`${userStatementCollection}/{Id}`)
-  .onCreate(postUserStatementEvent);
-
-export const postChatGptAnswer = functions
-  .region('asia-northeast1')
-  .firestore.document(`${chatGptAnswerCollection}/{Id}`)
-  .onCreate(postChatGptAnswerEvent);
