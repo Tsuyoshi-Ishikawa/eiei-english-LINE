@@ -48,13 +48,6 @@ export const postUserStatementEvent = async (
       userStatementText: comment,
       chatGptStatementText,
     });
-
-    const message = {
-      type: 'audio',
-      originalContentUrl: '', // todo set URL
-      duration: 120000, // Can transmit up to 2 minutes of audio data
-    } as AudioMessage;
-    await lineClient.pushMessage(userId, message);
   } catch (err) {
     console.error(err);
   }

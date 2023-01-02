@@ -22,11 +22,14 @@ export class AudioDataRepository {
   async getSignedM4aUrl(filename: string) {
     validateM4AFilePath(filename);
 
+    const currentDate = new Date();
+    const expirationDate = new Date(currentDate);
+    expirationDate.setMinutes(currentDate.getMinutes() + 10);
     const options: GetSignedUrlConfig = {
       action: 'read',
-      expires: 600, // 10 min
+      expires: expirationDate.toISOString(), // In 10 min
     };
-    const url = await this.bucket.file(filename).getSignedUrl(options);
+    const [url] = await this.bucket.file(filename).getSignedUrl(options);
     return url;
   }
 
