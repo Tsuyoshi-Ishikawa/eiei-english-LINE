@@ -232,7 +232,9 @@ service firebase.storage {
 }
 ```
 
-### Add Firebase Rules System
+## Supplements
+
+### Add Firebase Rules System(Option)
 
 To confirm storage and firestore access authorization, You have to add Firebase Rules System to your account.
 
@@ -242,3 +244,7 @@ You can check access authorization at Cloud storage access authorization at GCP 
 [ACL](https://cloud.google.com/storage/docs/access-control/create-manage-lists#set-an-acl)
 
 If you play audio at Cloud storage, please add access token to that content.
+
+### Listen ChatGpt Answer
+
+If you want to listen chatgpt answer audio, you have to create access token with audio file at Cloud Storage.
