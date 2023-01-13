@@ -1,4 +1,4 @@
-![alt text](./public/video/practice.mp4)
+![alt text](./public/video/practice.gif)
 
 # Set up(localhost)
 
