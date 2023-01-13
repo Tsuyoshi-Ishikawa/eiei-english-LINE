@@ -1,3 +1,5 @@
+![alt text](./public/video/practice.mp4)
+
 # Set up(localhost)
 
 ## npm
